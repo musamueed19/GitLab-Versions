@@ -1,0 +1,14 @@
+services:
+  nextjs-app:
+    build:
+      context: .              # Path to the Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"           # Map port 3001 in the container to 3001 on the host
+    volumes:
+      - .:/usr/src/app        # Mount the current directory to /usr/src/app in the container
+      - /usr/src/app/node_modules # Ignore node_modules in the container to avoid conflicts
+    environment:
+      - PORT=3002
+      - NODE_ENV=development
+    command: npm run dev      # Run the development command
